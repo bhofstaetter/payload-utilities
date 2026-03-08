@@ -1,6 +1,6 @@
 {
     "name": "payload-utilities",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Utility functions for Payload CMS — extract IDs, resolve documents, and compose field validators",
     "license": "MIT",
     "author": "Benedikt Hofstätter",
