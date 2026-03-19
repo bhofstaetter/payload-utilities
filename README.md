@@ -70,7 +70,7 @@ extractId({id: 1});        // 1
 extractIds([1, {id: 2}]);  // [1, 2]
 ```
 
-### `getDocument`
+### `getDocument` / `getDocuments`
 
 Resolves a value that is either a full document or an ID. If an object is passed, it is returned directly. If an ID is passed, the callback is called to fetch the document.
 
@@ -79,6 +79,14 @@ import {getDocument} from 'payload-utilities';
 
 const post = await getDocument(idOrPost, (id) =>
     payload.findByID({collection: 'posts', id}),
+);
+```
+
+```ts
+import {getDocuments} from 'payload-utilities';
+
+const posts = await getDocuments(idsOrPosts, (ids) =>
+    payload.find({collection: 'posts', where: {id: {in: ids}}}).then(result => result.docs),
 );
 ```
 
