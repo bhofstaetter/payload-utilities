@@ -1,6 +1,6 @@
-import type {DefaultDocumentIDType} from 'payload';
+import type {DefaultDocumentIDType, TypeWithID} from 'payload';
 
-export const getDocument = async <T extends object>(
+export const getDocument = async <T extends TypeWithID>(
     idOrDocument: T | DefaultDocumentIDType,
     getDocumentCallback: (id: DefaultDocumentIDType) => Promise<T>,
 ): Promise<T> => {

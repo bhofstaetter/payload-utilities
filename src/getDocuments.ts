@@ -1,7 +1,8 @@
-import type {DefaultDocumentIDType} from 'payload';
+import type {DefaultDocumentIDType, TypeWithID} from 'payload';
+import {extractIds} from '@/extractId.js';
 
-export const getDocuments = async <T extends object>(
-    idsOrDocuments: T[] | DefaultDocumentIDType[],
+export const getDocuments = async <T extends TypeWithID>(
+    idsOrDocuments: (T | DefaultDocumentIDType)[],
     getDocumentsCallback: (ids: DefaultDocumentIDType[]) => Promise<T[]>,
 ): Promise<T[]> => {
     if (!idsOrDocuments.length) {
@@ -12,5 +13,5 @@ export const getDocuments = async <T extends object>(
         return idsOrDocuments as T[];
     }
 
-    return getDocumentsCallback(idsOrDocuments as DefaultDocumentIDType[]);
+    return getDocumentsCallback(extractIds(idsOrDocuments));
 };
